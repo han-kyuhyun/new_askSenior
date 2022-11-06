@@ -334,17 +334,7 @@
                         <span>10</span>
                         <span>100</span>
                     </div>
-                    <div class="subnavigation_list_detail" name="10">
-                       
-                        <span>itking</span>
-                        <span>it제왕</span>
-                        <span>2022-10-23</span>
-                        <span>직장인 20년차</span>
-                        <span>한국대학교 컴퓨터과 졸업</span>
-                        <span>정보처리기사. 정보보안기사.</span>
-                        <span>10</span>
-                        <span>100</span>
-                    </div>
+                    
                     -->
                 </div>
             
