@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
@@ -27,14 +28,13 @@ button {
     justify-content: center;
     padding: 80px 0;
     background: #f3f5f9;
-
 }
 
 .main_layout .main_view {
     width: 760px;
     height: 500px;
     position: absolute;
-    margin: 144px 297px 144px 297px;
+    margin: 24px 297px 144px 297px;
 
 }
 
