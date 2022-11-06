@@ -1,24 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>강의 목록 페이지</title>
-    <link rel="stylesheet" href="lectureMain.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-  </head>
-  <body>
-    <!-- 배너 시작 -->
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/lecture/lectureMain.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<title>강의 목록 페이지</title>
+</head>
+<body>
+<jsp:include page="${pageContext.request.contextPath}/app/main/header.jsp"/>
+
+   <!-- 배너 시작 -->
     <section class="banner">
       <div id="banner-img">
-        <img
-          src="https://media.a-ha.io/aha-qna/categories/logos/category_tax.png?v=1.2"
-          alt=""
-        />
+        <img src="https://media.a-ha.io/aha-qna/categories/logos/category_tax.png?v=1.2" />
         <div class="class-title">강의</div>
         <div class="class-subtitle">시니어의 이야기</div>
       </div>
@@ -81,11 +79,11 @@
                 </a>
               </div>
               <div class="title">
-                <p class="ticher">마스터 라이터</p>
+                <p class="ticher"><c:out value="{$lectureLecturerIntroduction}"/></p>
                 <!--강사 이름  -->
               </div>
               <!--강의 제목 -->
-              <div class="subtitle">그림에 빛을 더하는 Light Paintng</div>
+              <div class="subtitle"></div>
             
             </div>
           </article>
@@ -382,66 +380,6 @@
    </aside>
 
 </main>
-
-    <!-- footer 시작 -->
-    <footer class="footer">
-      <div class="footer-wrapper">
-        <div class="footer-container">
-          <div class="footer-left">
-            <div class="footer-logo"><img class="logo-img" src="" />로고</div>
-            <div>
-              <ul class="footer-menu">
-                <li>
-                  <a>아하소개</a>
-                </li>
-                <li>
-                  <a>이용약관</a>
-                </li>
-                <li>
-                  <a>개인정보처리방침</a>
-                </li>
-                <li>
-                  <a>자주 묻는 질문(FAQ)</a>
-                </li>
-                <li>
-                  <a>채널톡 문의</a>
-                </li>
-                <li>
-                  <a>채용</a>
-                </li>
-                <li>
-                  <a>광고 문의</a>
-                </li>
-              </ul>
-              <ul class="footer-information">
-                <li>
-                  <span>법인명 : 더코퍼레이션 주식회사</span>
-                </li>
-                <li>
-                  <span>사업자 등록번호 : 144-81-25784</span>
-                </li>
-                <li>
-                  <button>사업자 정보확인</button>
-                </li>
-                <li>
-                  <span>대표자명 : 서한울</span>
-                </li>
-                <li>
-                  <span>통신판매업신고 : 2019-서울강남-02231호</span>
-                </li>
-                <li>
-                  <span>개인정보보호책임 : </span>
-                </li>
-              </ul>
-              <div class="copyright">
-                © 2022 AskSenior. All rights reserved.
-              </div>
-            </div>
-          </div>
-          <div class="footer-right"></div>
-        </div>
-      </div>
-    </footer>
-
-  </body>
+<jsp:include page="${pageContext.request.contextPath}/app/main/footer.jsp"/>
+</body>
 </html>
