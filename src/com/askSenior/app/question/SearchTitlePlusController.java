@@ -1,46 +1,52 @@
 package com.askSenior.app.question;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.rmi.ServerException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.askSenior.app.Execute;
 import com.askSenior.app.Result;
 import com.askSenior.app.question.dao.QuestionDAO;
-import com.askSenior.app.question.vo.CategoryPagenationDTO;
+import com.askSenior.app.question.vo.NewSearchTitlePagenationDTO;
 import com.askSenior.app.question.vo.QuestionVO;
+import com.askSenior.app.question.vo.SearchTitlePagenationDTO;
 
-public class ListRecruitmentController implements Execute{
+public class SearchTitlePlusController implements Execute{
 
 	@Override
 	public Result execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServerException {
 		QuestionDAO questionDAO = new QuestionDAO();
 		Result result = new Result();
-		List<QuestionVO> questions=new ArrayList<>();
+		List<QuestionVO> searchQuestionList=new ArrayList<>();
 		
 		
 		String temp = req.getParameter("page");
 		//String temp2= req.getParameter("plusCount");
-		//String temp3= req.getParameter("tenMoreButtonClickCount");
+		String temp3= req.getParameter("tenMoreButtonClickCount");
 		//HashMap<String, Integer> pageMap = new HashMap<String, Integer>();
 		//HashMap<String, String> searchTitleStore = new HashMap<String, String>();
 		//SearchTitlePagenationDTO searchTitlePagenationDTO= new SearchTitlePagenationDTO();
-		CategoryPagenationDTO categoryPagenationDTO= new CategoryPagenationDTO();
+		NewSearchTitlePagenationDTO newSearchTitlePagenationDTO= new NewSearchTitlePagenationDTO();
 		List<Integer> interestingQuestionCountList= new ArrayList<>();
 		List<Integer> likeQuestionCountList= new ArrayList<>();
 		List<Integer> recommendingQuestionCountList= new ArrayList<>();
 		List<Integer> replyAnswerCountList= new ArrayList<>();
-		
+		List<String> namageTitleList= new ArrayList<>();
 		
 		
 		int page = temp == null ? 1 : Integer.parseInt(temp);
 		//int plusCount = temp2 == null ? 0 : Integer.parseInt(temp2);
-		//int tenMoreButtonClick = temp3 == null ? 0 : Integer.parseInt(temp3);
+		int tenMoreButtonClick = temp3 == null ? 0 : Integer.parseInt(temp3);
 		
 		String searchTitle=req.getParameter("formSearchInput");
 		HttpSession session = req.getSession();
@@ -59,26 +65,26 @@ public class ListRecruitmentController implements Execute{
 		//rowCount+=10*tenMoreButtonClick;
 //		한 페이지에서 나오는 페이지 버튼의 개수
 		int pageCount = 10;
-		int startRow = (page - 1) * rowCount;
+		//int startRow = (page - 1) * rowCount;
 		
 		//int total = questionDAO.getTotal();
-		//int startRow=10*tenMoreButtonClick;
+		int startRow=10*tenMoreButtonClick;
 		
 		
-		/*
-		 * pageMap.put("rowCount", rowCount); pageMap.put("startRow", startRow);
-		 * searchTitleStore.put("searchTitle", searchTitle);
-		 * 
-		 * 
-		 * searchTitlePagenationDTO.setPageMap(pageMap);
-		 * searchTitlePagenationDTO.setSearchTitleStore(searchTitleStore);
-		 */
-		categoryPagenationDTO.setStartRow(startRow);
-		categoryPagenationDTO.setRowCount(rowCount);
-		categoryPagenationDTO.setSearchCategory("채용");
-		questions=questionDAO.selectCategory(categoryPagenationDTO);
+		/*pageMap.put("rowCount", rowCount);
+		pageMap.put("startRow", startRow);
+		searchTitleStore.put("searchTitle", searchTitle);
 		
-		int total=questionDAO.selectCategoryTotal(categoryPagenationDTO);
+		
+		searchTitlePagenationDTO.setPageMap(pageMap);
+		searchTitlePagenationDTO.setSearchTitleStore(searchTitleStore);*/
+		
+		newSearchTitlePagenationDTO.setStartRow(startRow);
+		newSearchTitlePagenationDTO.setRowCount(rowCount);
+		newSearchTitlePagenationDTO.setSearchTitle(searchTitle);
+		searchQuestionList=questionDAO.searchTitleAll(newSearchTitlePagenationDTO);
+		
+		int total=questionDAO.searchTitleTotal(searchTitle);
 		
 		int endPage = (int)(Math.ceil(page / (double)pageCount) * pageCount);
 		int startPage = endPage - (pageCount - 1);
@@ -87,21 +93,21 @@ public class ListRecruitmentController implements Execute{
 		boolean prev = startPage > 1; 
 		endPage = endPage > realEndPage ? realEndPage : endPage;
 		boolean next = endPage != realEndPage;
-		
+		/*
 		int questionNumber;
 		int interestingCount;
 		int likeCount;
 		int recommendingCount;
 		int replyAnswerCount;
 		String namageTitle;
-		for(int i=0;i<questions.size();i++) {
-			questionNumber=questions.get(i).getQuestionNumber();
+		for(int i=0;i<searchQuestionList.size();i++) {
+			questionNumber=searchQuestionList.get(i).getQuestionNumber();
 			
 			interestingCount =questionDAO.interestingQuestionCount(questionNumber);
 			likeCount=questionDAO.likeQuestionCount(questionNumber);
 			recommendingCount =questionDAO.recommendingQuestionCount(questionNumber);
 			replyAnswerCount =questionDAO.recommendingQuestionCount(questionNumber);
-			
+			namageTitle=searchQuestionList.get(i).getQuestionTitle().substring(searchTitle.length());
 			System.out.println(interestingCount);
 			System.out.println(recommendingCount);
 			
@@ -109,34 +115,30 @@ public class ListRecruitmentController implements Execute{
 			likeQuestionCountList.add(likeCount);
 			recommendingQuestionCountList.add(recommendingCount);
 			replyAnswerCountList.add(replyAnswerCount);
-			
+			namageTitleList.add(namageTitle);
 			
 				
 			
 			
 		}
+		*/
 		
 		
+	
+		resp.setContentType("application/json;charset=utf-8");
+		System.out.println(searchQuestionList);
+		PrintWriter out = resp.getWriter();
 		
-		req.setAttribute("total", total);
-		req.setAttribute("page", page);
-		req.setAttribute("startPage", startPage);
-		req.setAttribute("endPage", endPage);
-		req.setAttribute("prev", prev);
-		req.setAttribute("next", next);
-		req.setAttribute("interestingQuestionCountList", interestingQuestionCountList);
-		req.setAttribute("likeQuestionCountList", likeQuestionCountList);
-		req.setAttribute("recommendingQuestionCountList", recommendingQuestionCountList);
-		req.setAttribute("replyAnswerCountList", replyAnswerCountList);
+		JSONArray plusSearchQuestions = new JSONArray();
+		searchQuestionList.stream().map(plusSearchQuestion -> new JSONObject(plusSearchQuestion)).forEach(obj -> plusSearchQuestions.put(obj));
+		out.print(plusSearchQuestions.toString());
+		System.out.println(plusSearchQuestions.toString());
+		out.close();
 		
-		req.setAttribute("questions", questions);
-		req.setAttribute("searchTitle", searchTitle);
-		
-		
-		result.setPath("/app/question/questionRecruitment.jsp");
-		
-		result.setRedirect(false);
-		return result;
+		return null;
+	
 	}
+
+	
 
 }

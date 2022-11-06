@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.askSenior.app.Result;
+
 
 
 public class AnswerFrontController extends HttpServlet{
@@ -24,7 +26,7 @@ public class AnswerFrontController extends HttpServlet{
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String target = req.getRequestURI().substring(req.getContextPath().length());
-		//Result result = null;
+		Result result = null;
 		
 		if(target.equals("/answer/listAll.answ")) {
 			//전체 답변 목록
@@ -77,17 +79,27 @@ public class AnswerFrontController extends HttpServlet{
 		}else if(target.equals("/answer/scrapCancel.answ")) {
 			//답변 스크랩 해제
 		
-		}	
+		
+		}else if(target.equals("/answer/writeAnswer.answ")) {
+		//답변 쓰는 페이지로 이동
+			result=new WriteAnswerController().execute(req, resp);
+			
+		
+		}else if(target.equals("/answer/writeAnswerOK.answ")) {
+			//답변 쓴것을 디비에 인서트
+			result=new WriteAnswerOKController().execute(req, resp);
+		
+		}
 			
 			
-//		if(result != null) {
-//			if(result.isRedirect()) {
-//				resp.sendRedirect(result.getPath());
-//			}else {
-//				req.getRequestDispatcher(result.getPath()).forward(req, resp);
-//			}
-//			
-//		}
+		if(result != null) {
+		if(result.isRedirect()) {
+				resp.sendRedirect(result.getPath());
+			}else {
+				req.getRequestDispatcher(result.getPath()).forward(req, resp);
+			}
+			
+		}
 		
 	}
 
