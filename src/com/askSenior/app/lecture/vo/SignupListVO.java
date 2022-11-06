@@ -6,7 +6,7 @@ public class SignupListVO {
 	private int signupListNumber;
 	private int lectureNumber;
 	private int memberNumber;
-	private Date signupListSignupDate;
+	private String signupListSignupDate;
 	
 	public SignupListVO() {
 		// TODO Auto-generated constructor stub
@@ -28,29 +28,28 @@ public class SignupListVO {
 		this.lectureNumber = lectureNumber;
 	}
 
-	public int getMemberNumber() {
+	public int getUserNumber() {
 		return memberNumber;
 	}
 
-	public void setMemberNumber(int memberNumber) {
-		this.memberNumber = memberNumber;
+	public void setUserNumber(int userNumber) {
+		this.memberNumber = userNumber;
 	}
 
-	public Date getSignupListSignupDate() {
+	public String getSignupListSignupDate() {
 		return signupListSignupDate;
 	}
 
-	public void setSignupListSignupDate(Date signupListSignupDate) {
+	public void setSignupListSignupDate(String signupListSignupDate) {
 		this.signupListSignupDate = signupListSignupDate;
 	}
 
 	@Override
 	public String toString() {
 		return "SignupListVO [signupListNumber=" + signupListNumber + ", lectureNumber=" + lectureNumber
-				+ ", memberNumber=" + memberNumber + ", signupListSignupDate=" + signupListSignupDate + "]";
+				+ ", userNumber=" + memberNumber + ", signupListSignupDate=" + signupListSignupDate + "]";
 	}
 
-	
 	
 	
 }

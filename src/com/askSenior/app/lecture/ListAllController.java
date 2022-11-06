@@ -8,13 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.askSenior.app.Execute;
 import com.askSenior.app.Result;
+import com.askSenior.app.lecture.dao.LectureDAO;
 
 public class ListAllController implements Execute{
 
 	@Override
 	public Result execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServerException {
-		// TODO Auto-generated method stub
-		return null;
+//		LectureDAO lectureDAO = new LectureDAO();
+		Result result = new Result();
+		
+		result.setPath("/app/lecture/lectureMain.jsp");
+		return result;
 	}
 
 }

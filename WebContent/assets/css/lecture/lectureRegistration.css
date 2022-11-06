@@ -44,6 +44,7 @@ button {
   border: none;
   cursor: pointer;
 }
+
 /* 헤더 */
 .header {
   position: fixed;
@@ -208,6 +209,7 @@ button {
   color: rgba(255, 255, 255);
   bottom: 27px;
 }
+
 /* 네비 */
 nav {
   width: 28%;
@@ -259,6 +261,11 @@ li hr {
   text-align: center;
   margin-left: 25px;
   margin-right: 25px;
+}
+
+form {
+	width: 100%;
+	height: 100%;
 }
 /* 섹션 1 */
 /* 메인 이미지 */
@@ -492,93 +499,7 @@ div.page-nav button:hover {
   border: 1px solid #0206af;
   border-radius: 3px;
 }
-/* footer */
-.footer {
-  background-color: #333;
-  border-top: none;
-  color: #fff;
-}
 
-.footer-wrapper {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  position: relative;
-  font-size: 0.75rem;
-}
-
-.footer-container {
-  margin: auto;
-  max-width: 100%;
-  width: 1172px;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-.footer-left {
-  flex-direction: row;
-  flex: auto;
-  display: flex;
-  height: 100%;
-}
-
-.footer-logo {
-  margin-bottom: 0;
-  width: 75px;
-  height: auto;
-  margin-right: 40px;
-}
-
-.footer-menu {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  max-width: 540px;
-}
-
-.footer-menu li {
-  margin-right: 0.75rem;
-}
-
-.footer-information {
-  display: flex;
-  max-width: 550px;
-  flex-wrap: wrap;
-  list-style-type: none;
-  margin-top: 1.25rem;
-}
-/* .png {
-  padding: 6px 25px;
-  background-color: #ff6600;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
-} */
-/* .png > label {
-  display: block;
-}
-.png > input {
-  padding: 6px 25px;
-  background-color: #ff6600;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
-} */
-
-.footer-information li {
-  margin-right: 0.75rem;
-  margin-top: 5px;
-}
-
-.footer-information li button {
-  color: inherit;
-  font-size: inherit;
-}
-
-.copyright {
-  margin-top: 1.25rem;
-}
 /* 미디어 쿼리 */
 @media screen and (max-width: 1224px) {
   .container-new .article-line-new {
