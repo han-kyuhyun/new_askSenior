@@ -8,12 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.askSenior.app.Execute;
 import com.askSenior.app.Result;
+import com.askSenior.app.member.dao.MemberDAO;
 
 public class CheckEmailController implements Execute{
 
 	@Override
 	public Result execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServerException {
-		// TODO Auto-generated method stub
+		String memberEmail = req.getParameter("memberEmail");
+		MemberDAO memberDao = new MemberDAO();
+		memberDao.checkId(memberEmail);
+		resp.getWriter().print(memberDao.checkId(memberEmail));
 		return null;
 	}
 
