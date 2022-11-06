@@ -1,6 +1,5 @@
 package com.askSenior.app.main;
 
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -8,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import com.askSenior.app.Result;
 
 public class MainFrontController extends HttpServlet{
 	@Override
@@ -23,22 +22,21 @@ public class MainFrontController extends HttpServlet{
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String target = req.getRequestURI().substring(req.getContextPath().length());
-		//Result result = null;
+		Result result = null;
 		
-		if(target.equals("/admin/memberList.admin")) {
-			//전체 멤버 목록
-		
+		if(target.equals("/main.ma")) {
+			System.out.println("들어옴");
+			result = new MainController().execute(req, resp);
 		}
 			
+		if(result != null) {
+			if(result.isRedirect()) {
+				resp.sendRedirect(result.getPath());
+			}else {
+				req.getRequestDispatcher(result.getPath()).forward(req, resp);
+			}
 			
-//		if(result != null) {
-//			if(result.isRedirect()) {
-//				resp.sendRedirect(result.getPath());
-//			}else {
-//				req.getRequestDispatcher(result.getPath()).forward(req, resp);
-//			}
-//			
-//		}
+		}
 		
 	}
 

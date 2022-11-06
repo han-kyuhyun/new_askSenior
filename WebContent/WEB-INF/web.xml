@@ -10,8 +10,6 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  
-  
   <servlet>
   	<servlet-name>Admin</servlet-name>
   	<servlet-class>com.askSenior.app.admin.AdminFrontController</servlet-class>
@@ -70,6 +68,16 @@
   <servlet-mapping>
   	<servlet-name>Question</servlet-name>
   	<url-pattern>*.ques</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>Main</servlet-name>
+  	<servlet-class>com.askSenior.app.main.MainFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Main</servlet-name>
+  	<url-pattern>*.ma</url-pattern>
   </servlet-mapping>
   
 </web-app>
