@@ -184,11 +184,26 @@ div.question-title h1{
     font-weight: 400;
     padding: 1rem;
 }
-
+#questionButtons{
+	display:flex;
+	width:100%;
+}
+#updateAndRemove{
+	width:40%;
+	display:flex;
+	display:inline-block;
+}
+#updateAndRemove button{
+	display:inline-block;
+	width:200px;
+	height:50px;
+	padding:16px;
+}
 /* 관심 질문, 추천, 좋아요 버튼 */
 .button-wrapper {
-    width: 100%;
+    width: 40%;
     display: flex;
+    disply:inline-block;
 }
 
 .button-wrapper button{
